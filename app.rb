@@ -32,3 +32,34 @@ end
 get '/movies' do
 	erb :movie	
 end
+
+get '/movies' do
+	@movies = Movie.all
+	erb :movies
+end
+
+get '/movies/:movie_id' do  # movie details
+	@movie = Movie.find(params[:movie_id])
+	erb :movie
+end
+
+post '/movies/:movie_id' do
+ 	@movie = Movie.find(params[:movie_id])
+ 	erb :review
+end
+#------------Reviews------------------
+
+get '/movies/add_review/:movie_id' do
+	@movie = current_user.movies.find(params[:movie_id])
+	erb :review
+end
+
+post '/movies/add_review/:movie_id' do
+	@movie = Movie.find(params[:movie_id])
+	@review = current_user.reviews.create(movie_id: params[:movie_id], content: params[:content], score: params[:score])
+	if @review.save
+		redirect "/movies/#{@movie.id}"
+	else
+		erb :review
+	end
+end
