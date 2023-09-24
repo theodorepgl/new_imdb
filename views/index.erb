@@ -1,0 +1,10 @@
+<h1>IMBD</h1>
+<h3>Register for new user or login for existing user.</h3>
+<a href="/signup">Signup</a>
+<br>
+<a href="/login">Login</a>
+<br>
+
+<% @movies.each do |movie| %>
+	<a href="/"><%= movie.title %></a><br>
+<% end %>

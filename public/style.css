@@ -1,0 +1,6 @@
+body {
+	background: black;
+	color: yellow;
+	display: grid;
+	justify-content: center;
+}
